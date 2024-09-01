@@ -38,7 +38,7 @@ class UserInteractionTest {
 
         boolean repeat = userInteraction.restart();
 
-        assertTrue(repeat, "Eingabe 'j' sollte true zurückgeben.");
+        assertTrue(repeat, "Eingabe 'y' sollte true zurückgeben.");
     }
 
     @Test
