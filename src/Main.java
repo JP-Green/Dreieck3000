@@ -1,14 +1,12 @@
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
 
         UserInteraction userInteraction = new UserInteraction();
         Calculator calculator = new Calculator();
-        String repeat;
+        boolean repeat;
         
         do {
-            int[] sides = userInteraction.readValues();
+            int[] sides = userInteraction.readSideLengthsForTriangle();
 
             String result = calculator.determineTriangleType(sides);
 
@@ -16,7 +14,7 @@ public class Main {
 
             repeat = userInteraction.restart();
 
-        } while (repeat.equalsIgnoreCase("y"));
+        } while (repeat);
 
         System.out.println("Vielen Dank für die Nutzung!");
 

@@ -2,10 +2,9 @@ import java.util.Scanner;
 
 public class UserInteraction {
 
-    private int[] sides = new int[3];
-
-    public int[] readValues() {
+    public int[] readSideLengthsForTriangle() {
         Scanner scanner = new Scanner(System.in);
+        int[] sides = new int[3];
         System.out.println("Bitte geben Sie drei Ganzzahlen zwischen 1 und 99 ein:");
 
         for (int i = 0; i < 3; i++) {
@@ -20,7 +19,7 @@ public class UserInteraction {
                         System.out.println("Bitte geben Sie eine Zahl zwischen 1 und 99 ein.");
                     }
                 } catch (Exception e) {
-                    System.out.println("Ungültige Eingabe. Bitte geben Sie eine Ganzzahl ein."+ e.getMessage());
+                    System.out.println("Ungültige Eingabe. Bitte geben Sie eine Ganzzahl ein.");
                     scanner.next();
                 }
             }
@@ -28,10 +27,11 @@ public class UserInteraction {
         return sides;
     }
 
-    public String restart() {
+    public boolean restart() {
 
         Scanner scanner = new Scanner(System.in);
         System.out.print("Möchten Sie ein weiteres Dreieck prüfen? (y/n): ");
-        return scanner.next();
+        String repeat = scanner.next();
+        return repeat.equalsIgnoreCase("y");
     }
 }

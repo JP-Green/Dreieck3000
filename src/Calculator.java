@@ -4,9 +4,9 @@ public class Calculator {
         int b = sides[1];
         int c = sides[2];
 
-        if (!(a + b > c
-                && a + c > b
-                && b + c > a)){
+        if ((a + b <= c)
+                || (a + c <= b)
+                || (b + c <= a)) {
             return "kein Dreieck";
         }
 

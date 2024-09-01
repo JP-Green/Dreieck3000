@@ -1,6 +1,6 @@
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
@@ -14,31 +14,31 @@ class UserInteractionTest {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        int[] sides = userInteraction.readValues();
+        int[] sides = userInteraction.readSideLengthsForTriangle();
 
         assertArrayEquals(new int[]{5, 5, 5}, sides, "Eingabe sollte [5, 5, 5] sein.");
     }
 
     @Test
     void testInvalidInputAndRetry() {
-        String input = "100\n5\n5\n";
+        String input = "100\n99\n5\n5\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        int[] sides = userInteraction.readValues();
+        int[] sides = userInteraction.readSideLengthsForTriangle();
 
-        assertArrayEquals(new int[]{5, 5, 5}, sides, "Eingabe sollte nach Wiederholung [5, 5, 5] sein.");
+        assertArrayEquals(new int[]{99, 5, 5}, sides, "Eingabe sollte nach Wiederholung [99, 5, 5] sein.");
     }
 
     @Test
     void testAskToRepeatYes() {
-        String input = "j\n";
+        String input = "y\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        String repeat = userInteraction.restart();
+        boolean repeat = userInteraction.restart();
 
-        assertEquals("j", repeat, "Eingabe sollte 'j' sein.");
+        assertTrue(repeat, "Eingabe 'j' sollte true zurückgeben.");
     }
 
     @Test
@@ -47,9 +47,9 @@ class UserInteractionTest {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        String repeat = userInteraction.restart();
+        boolean repeat = userInteraction.restart();
 
-        assertEquals("n", repeat, "Eingabe sollte 'n' sein.");
+        assertFalse(repeat, "Eingabe 'n' sollte false zurückgeben.");
     }
   
 }
